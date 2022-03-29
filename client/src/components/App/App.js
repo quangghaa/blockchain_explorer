@@ -60,6 +60,7 @@ export class App extends Component {
 	/* istanbul ignore next */
 	render() {
 		const { auth } = this.props;
+		console.log(auth);
 		const { loading } = this.state;
 		if (auth && loading) {
 			return <LandingPage updateLoadStatus={this.updateLoadStatus} />;

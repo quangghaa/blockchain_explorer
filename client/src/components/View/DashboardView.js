@@ -157,6 +157,8 @@ export class DashboardView extends Component {
 	render() {
 		const { dashStats, peerStatus, blockActivity, transactionByOrg } = this.props;
 		const { hasDbError, notifications } = this.state;
+
+		console.log('In Dashboard Viewwwwwwwwwwwwwwwwww');
 		if (hasDbError) {
 			return (
 				<div

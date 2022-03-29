@@ -506,7 +506,10 @@ export class HeaderView extends Component {
 			{ to: '/blocks', label: 'BLOCKS' },
 			{ to: '/transactions', label: 'TRANSACTIONS' },
 			{ to: '/chaincodes', label: 'CHAINCODES' },
-			{ to: '/channels', label: 'CHANNELS' }
+			{ to: '/channels', label: 'CHANNELS' },
+			{ to: '/nhs_account', label: 'ACCOUNT_NHS' },
+			{ to: '/nhs_money', label: 'MONEY_NHS' },
+			{ to: '/nhs_transaction', label: 'TRANSACTION_NHS' }
 		];
 
 		return (

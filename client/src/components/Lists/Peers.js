@@ -102,6 +102,8 @@ const Peers = ({ peerList }) => {
 		}
 	];
 
+	console.log('DEBUG: Peers ', { peerList });
+
 	return (
 		<div>
 			<ReactTable

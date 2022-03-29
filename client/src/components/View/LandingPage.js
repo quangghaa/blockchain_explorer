@@ -154,6 +154,8 @@ export class LandingPage extends Component {
 
 	render() {
 		const { hasDbError, logoStyle, settings } = this.state;
+
+		console.log('In landing page');
 		if (hasDbError) {
 			return (
 				<div

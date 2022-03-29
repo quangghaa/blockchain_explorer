@@ -31,6 +31,9 @@ import {
 import PageNotFound from './View/PageNotFound';
 
 import Private from './Route';
+import NHSAccountView from './View/NHSAccountView';
+import NHSMoneyView from './View/NHSMoneyView';
+import NHSTransactionView from './View/NHSTransactionView';
 
 const {
 	currentChannelSelector,
@@ -80,7 +83,10 @@ export const Main = props => {
 		blockListSearch,
 		transactionListSearch,
 		getBlockListSearch,
-		getTransactionListSearch
+		getTransactionListSearch,
+		nhsAccountList,
+		nhsMoneyList,
+		nhsTransactionList
 	} = props;
 
 	const blocksViewProps = {
@@ -110,6 +116,18 @@ export const Main = props => {
 
 	const networkViewProps = {
 		peerList
+	};
+
+	const nhsAccountViewProps = {
+		nhsAccountList
+	};
+
+	const nhsMoneyViewProps = {
+		nhsMoneyList
+	};
+
+	const nhsTransactionViewProps = {
+		nhsTransactionList
 	};
 
 	const transactionsViewProps = {
@@ -195,6 +213,27 @@ export const Main = props => {
 							/>
 						)}
 					/>
+					<Private
+						exact
+						path="/nhs_account"
+						render={routeprops => (
+							<NHSAccountView {...{ ...nhsAccountViewProps, ...routeprops }} />
+						)}
+					/>
+					<Private
+						exact
+						path="/nhs_money"
+						render={routeprops => (
+							<NHSMoneyView {...{ ...nhsMoneyViewProps, ...routeprops }} />
+						)}
+					/>
+					<Private
+						exact
+						path="/nhs_transaction"
+						render={routeprops => (
+							<NHSTransactionView {...{ ...nhsTransactionViewProps, ...routeprops }} />
+						)}
+					/>
 					<Route exact render={routeprops => <PageNotFound {...routeprops} />} />
 				</Switch>
 			</div>
@@ -216,6 +255,69 @@ Main.propTypes = {
 	transactionList: transactionListType.isRequired
 };
 
+const fakeAccounts = [
+	{
+		id: '1',
+		name: 'Account 1',
+		type: 'User',
+		expire_date: '22/02/2022'
+	},
+	{
+		id: '2',
+		name: 'Account 2',
+		type: 'User',
+		expire_date: '22/02/2023'
+	},
+	{
+		id: '2',
+		name: 'Account 2',
+		type: 'User',
+		expire_date: '22/02/2024'
+	}
+];
+
+const fakeMoney = [
+	{
+		id: '1',
+		account_type: 'User',
+		total_money: 999999
+	},
+	{
+		id: '2',
+		account_type: 'VIP',
+		total_money: 88888888
+	},
+	{
+		id: '3',
+		account_type: 'PRO',
+		total_money: 9999998888
+	}
+];
+
+const fakeTransactions = [
+	{
+		id: '1',
+		from: 'Address x',
+		to: 'Address y',
+		data: 'Some data here',
+		date: '29/03/2022'
+	},
+	{
+		id: '2',
+		from: 'Address a',
+		to: 'Address y',
+		data: 'Some data here',
+		date: '29/03/2022'
+	},
+	{
+		id: '3',
+		from: 'Address b',
+		to: 'Address y',
+		data: 'Some data here',
+		date: '29/03/2022'
+	}
+];
+
 const connectedComponent = connect(
 	state => ({
 		blockList: blockListSelector(state),
@@ -231,7 +333,10 @@ const connectedComponent = connect(
 		transactionList: transactionListSelector(state),
 		blockListSearch: blockListSearchSelector(state),
 		transactionListSearch: transactionListSearchSelector(state),
-		blockActivity: blockActivitySelector(state)
+		blockActivity: blockActivitySelector(state),
+		nhsAccountList: fakeAccounts,
+		nhsMoneyList: fakeMoney,
+		nhsTransactionList: fakeTransactions
 	}),
 	{
 		getTransaction: tableOperations.transaction,

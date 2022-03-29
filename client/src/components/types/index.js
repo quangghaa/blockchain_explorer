@@ -136,6 +136,37 @@ export const peerListType = arrayOf(
 	})
 );
 
+// NHS types
+
+export const nhsAccountListType = arrayOf(
+	shape({
+		id: string,
+		name: string,
+		type: string,
+		expire_date: string
+	})
+);
+
+export const nhsMoneyListType = arrayOf(
+	shape({
+		id: string,
+		account_type: string,
+		total_money: number
+	})
+);
+
+export const nhsTransactionListType = arrayOf(
+	shape({
+		id: string,
+		from: string,
+		to: number,
+		data: string,
+		date: string
+	})
+);
+
+//
+
 export const peerStatusType = arrayOf(
 	shape({
 		server_hostname: string,
